@@ -162,6 +162,5 @@ claude plugin validate .       # the canonical Claude Code plugin-marketplace ch
 | Item | State |
 |---|---|
 | Plugins | 1 — `patterson-workflows` (harvested skill only) |
-| License | none yet — [blocked on an open licensing decision, tracked in `patterson-corp`] |
 | Remote repository | [`github.com/patterson-agents/patterson-labs`](https://github.com/patterson-agents/patterson-labs) |
 | GitHub-template adoption of `githubnext/agentics` | documented, not executed — [`docs/gh-aw-adoption.md`](docs/gh-aw-adoption.md) |
