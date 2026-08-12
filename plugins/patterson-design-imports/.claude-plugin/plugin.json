@@ -7,7 +7,7 @@
   },
   "homepage": "https://github.com/patterson-agents/patterson-labs/tree/main/plugins/patterson-design-imports",
   "repository": "https://github.com/patterson-agents/patterson-labs",
-  "license": "UNLICENSED",
+  "license": "LicenseRef-Patterson-Internal",
   "keywords": [
     "design-tokens",
     "design-system",

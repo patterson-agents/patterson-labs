@@ -20,7 +20,7 @@
       "author": {
         "name": "Patterson Companies"
       },
-      "license": "UNLICENSED",
+      "license": "LicenseRef-Patterson-Internal",
       "category": "engineering",
       "keywords": [
         "gh-aw",
@@ -51,7 +51,7 @@
       "author": {
         "name": "Patterson Corporate Marketing & Communications"
       },
-      "license": "UNLICENSED",
+      "license": "LicenseRef-Patterson-Internal",
       "category": "design",
       "keywords": [
         "design-tokens",
