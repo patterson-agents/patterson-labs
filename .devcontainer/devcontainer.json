@@ -4,9 +4,7 @@
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": "true",
-      "username": "vscode",
-      "userUid": "1000",
-      "userGid": "1000",
+      "username": "automatic",
       "upgradePackages": "true"
     },
     "ghcr.io/devcontainers/features/git:1": {
@@ -32,5 +30,5 @@
       ]
     }
   },
-  "remoteUser": "vscode"
+  "remoteUser": "node"
 }
