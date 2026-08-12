@@ -1,0 +1,18 @@
+{
+  "name": "patterson-workflows",
+  "version": "0.1.0",
+  "description": "Conversational interview skill that designs GitHub Agentic Workflows (gh aw) from a stated goal, harvested from patterson-skills as the best single artifact found in the legacy repositories.",
+  "author": {
+    "name": "Patterson Companies"
+  },
+  "homepage": "https://github.com/patterson-agents/patterson-labs/tree/main/plugins/patterson-workflows",
+  "repository": "https://github.com/patterson-agents/patterson-labs",
+  "license": "UNLICENSED",
+  "keywords": [
+    "gh-aw",
+    "agentic-workflows",
+    "automation",
+    "github-actions",
+    "workflow-design"
+  ]
+}
