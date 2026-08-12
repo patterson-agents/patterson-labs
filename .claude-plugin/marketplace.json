@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "patterson-labs",
+  "description": "Patterson Labs incubation marketplace. Experimental plugins graduate here before earning durable status in patterson-corp — see docs/promotion-path.md.",
+  "version": "0.1.0",
+  "owner": {
+    "name": "Patterson Companies",
+    "url": "https://github.com/patterson-agents"
+  },
+  "metadata": {
+    "pluginRoot": "./plugins",
+    "relevance": {
+      "roles": ["engineer", "sre", "platform", "workflow-author"],
+      "contexts": [
+        "incubating a plugin that has not yet earned durable status in patterson-corp",
+        "designing, creating, debugging, or upgrading a GitHub Agentic Workflow"
+      ]
+    }
+  },
+  "plugins": [
+    {
+      "name": "patterson-workflows",
+      "source": "./plugins/patterson-workflows",
+      "displayName": "Patterson Agentic Workflow Designer",
+      "description": "A conversational interview skill that designs one complete GitHub Agentic Workflow (gh aw) `.md` file from a stated goal — trigger, scope, data strategy, guardrails, network, and engine. Harvested from patterson-skills.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Patterson Companies"
+      },
+      "license": "UNLICENSED",
+      "category": "engineering",
+      "keywords": [
+        "gh-aw",
+        "agentic-workflows",
+        "automation",
+        "github-actions"
+      ],
+      "relevance": {
+        "roles": ["engineer", "sre", "platform"],
+        "contexts": [
+          "designing a new GitHub Agentic Workflow before writing the .md file",
+          "unsure of gh-aw syntax but clear on the automation goal"
+        ]
+      }
+    }
+  ]
+}
