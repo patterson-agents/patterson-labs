@@ -1,5 +1,9 @@
 <div align="center">
 
+<img src="docs/assets/banner.svg" width="100%" alt="Patterson Labs — Patterson Companies">
+
+<img src="docs/assets/patterson-logo-square-navy.svg" width="56" alt="Patterson Companies">
+
 # patterson-labs
 
 **Trusted Expertise. Unrivaled Support.** — the Patterson incubation marketplace, where
@@ -24,6 +28,7 @@ experimental plugins earn their way into `patterson-corp`.
 - [Quick start](#quick-start)
 - [Agentic workflows](#agentic-workflows)
 - [Validation](#validation)
+- [Contributing and references](#contributing-and-references)
 - [Status](#status)
 
 ## What this is
@@ -145,11 +150,18 @@ claude plugin validate .       # the canonical Claude Code plugin-marketplace ch
 
 </details>
 
+## Contributing and references
+
+| File | Purpose |
+|---|---|
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | The canonical `patterson-corp` process plus this repository's promotion path |
+| [`REFERENCES.md`](REFERENCES.md) | Authoritative sources — the promotion criteria, HANDOFF/PROJECT-CHARTER locations, and the upstream `gh-aw` / `agentics` URLs |
+
 ## Status
 
 | Item | State |
 |---|---|
 | Plugins | 1 — `patterson-workflows` (harvested skill only) |
 | License | none yet — [blocked on an open licensing decision, tracked in `patterson-corp`] |
-| Remote repository | not created — this checkout is local-only |
+| Remote repository | [`github.com/patterson-agents/patterson-labs`](https://github.com/patterson-agents/patterson-labs) |
 | GitHub-template adoption of `githubnext/agentics` | documented, not executed — [`docs/gh-aw-adoption.md`](docs/gh-aw-adoption.md) |
