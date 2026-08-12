@@ -59,10 +59,21 @@ else
 fi
 
 # --- 3. forbidden strings: known off-brand/contamination markers ---
-# Excludes .git, generated *.lock.yml (gh-aw output, marked linguist-generated), and this
-# test script itself (which legitimately names the needles as literals to search for).
+# The rule is that a rejected value must never reach a SHIPPED surface: assets/, scripts/,
+# SKILL.md or REFERENCES.md. Each design-token skill's own tests/run-tests.sh asserts exactly
+# that, per skill and case-insensitively.
+#
+# Excludes .git, generated *.lock.yml (gh-aw output, marked linguist-generated), and this test
+# script itself (which legitimately names the needles as literals to search for).
+#
+# Also excludes DESIGN.md and _SOURCES.md. Those are the provenance documents, and naming the
+# rejected value with its source is precisely their job: openspec change
+# import-claude-design-projects requires that a conflict against the Brand Guide "is recorded
+# with both values and their sources", following the #00A8E1 versus #269BCB precedent. A
+# reconciliation record that cannot state what it rejected is not a record.
 for needle in Figtree d98a00 c0392b rul6mjk; do
-  hit=$(grep -rIl --exclude-dir=.git --exclude='*.lock.yml' --exclude='run-tests.sh' -- "$needle" "$DIR" 2>/dev/null | head -1)
+  hit=$(grep -rIl --exclude-dir=.git --exclude='*.lock.yml' --exclude='run-tests.sh' \
+    --exclude='DESIGN.md' --exclude='_SOURCES.md' -- "$needle" "$DIR" 2>/dev/null | head -1)
   if [ -n "$hit" ]; then
     bad "forbidden string '$needle' found in $hit"
   else

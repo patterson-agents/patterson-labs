@@ -41,6 +41,40 @@
           ]
         }
       }
+    },
+    {
+      "name": "patterson-design-imports",
+      "source": "./plugins/patterson-design-imports",
+      "displayName": "Patterson Imported Design Tokens",
+      "description": "Design tokens imported from the Patterson Academy and lab-workshop claude.ai/design projects. Each ships a Tailwind v4 theme.css, a W3C tokens.json, a byte-identical generator and a drift check, with every conflict against the 2025 Brand Guide recorded and the Brand Guide winning. Incubating: neither import supersedes patterson-brand, and the supersession ruling is still open. Relevant to designers and engineers styling a training deck, lab workbook or workshop app, matching the live Patterson type scale, or comparing the two imported design systems against each other or against patterson-brand.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Patterson Corporate Marketing & Communications"
+      },
+      "license": "UNLICENSED",
+      "category": "design",
+      "keywords": [
+        "design-tokens",
+        "design-system",
+        "tailwind",
+        "brand",
+        "import",
+        "incubating",
+        "designer",
+        "engineer"
+      ],
+      "relevance": {
+        "topic": "Patterson imported design tokens",
+        "signals": {
+          "filesRead": [
+            "**/*.css",
+            "**/tokens.json",
+            "**/tailwind.config.*",
+            "**/*.tsx",
+            "**/*.jsx"
+          ]
+        }
+      }
     }
   ]
 }

@@ -1,0 +1,759 @@
+/* ============================================================================
+   lab-workshop — imported design tokens — Tailwind CSS v4 theme
+   ----------------------------------------------------------------------------
+   DROP-IN USAGE
+     @import "tailwindcss";
+     @import "./theme.css";
+
+   Tailwind v4 is CSS-first: this file IS the config. There is no
+   tailwind.config.js.
+
+   WHAT THIS IS. A lightweight extraction of the design system bound to the
+   claude.ai/design project "lab-workshop" (TechDays: AI Fluency — Agentic
+   Agents), 13a03949-51b5-4210-95d1-75f022b3543d, taken from the handoff export
+   dated 2026-08-12 and reconciled against the 2025 Brand Guide. It is an
+   INCUBATING import: whether this design system or the existing patterson-brand
+   one is authoritative has not been ruled on. Nothing here supersedes
+   patterson-corp/plugins/patterson-brand.
+
+   THIS IS THE LATER OF TWO SNAPSHOTS of one design system. The Patterson
+   Academy project binds the SAME design-system UUID
+   (3534f94f-a7e6-4612-81d4-6e830716f07d) under a different slug. This snapshot
+   adds a production-verified layer — real interaction states, the official icon
+   font, the live type scale — and corrects two of the Academy snapshot's own
+   choices (headings to navy, eyebrows to sentence case).
+
+   SOURCE KEYS
+     [LABWS]  the project's _ds snapshot,
+              _ds/patterson-design-system-3534f94f-a7e6-4612-81d4-6e830716f07d/tokens/*.css
+     [LABDECK] the project's own deck stylesheet, ai-fluency-agentic-agents.css
+     [LABPROD] values the snapshot labels VERIFIED / PRODUCTION, describing
+              itself as read from the live pattersondental.com /
+              pattersonvet.com theme stylesheet. SECOND-HAND: the snapshot's
+              claim, not an independent read by this extraction.
+     [BG25]   Patterson Companies Brand Guide 2025 (VERSION 3.2025) — authoritative
+     [DS20]   DesignSystem_042120.pdf (April 2020)
+     [DPL]    Patterson Digital Pattern Library v5.7.2 production stylesheet
+     [CORP]   patterson-corp/plugins/patterson-brand/skills/design-tokens — the
+              reference extraction of [BG25]/[DS20]/[DPL] these values are
+              reconciled against
+
+   RECONCILIATION. Where an imported value conflicts with [BG25], the Brand
+   Guide value ships and the conflict is named in the comment. Every such line
+   is marked CONFLICT. Where [BG25] is silent the imported value is carried and
+   marked TBD. Full narrative in DESIGN.md; per-token record in tokens.json.
+
+   NOTHING IN THIS FILE IS INVENTED, and this file is GENERATED — edit
+   assets/tokens.json and re-run scripts/build-theme.ts.
+   ============================================================================ */
+
+@theme {
+  /* ==========================================================================
+     TYPEFACES
+     Proxima Nova is the Patterson brand font [BG25 p.25], licensed through
+     Adobe Fonts. Load kit uth1qfm in the document head:
+
+       <link rel="stylesheet" href="https://use.typekit.net/uth1qfm.css">
+
+     REFERENCE THE KIT; SHIP NOTHING. This file contains no @font-face rule and
+     this skill contains no font binary, deliberately.
+
+     CONFLICT: the imported stack inserts a free Google fallback family between
+     proxima-nova and the system stack, and the snapshot self-hosts three
+     Proxima Nova woff2 faces. [BG25 p.25] names Arial as the sanctioned
+     fallback and [DPL] ships proxima-nova, Arial, sans-serif verbatim; [CORP]
+     records the substitute family as a wrong earlier extraction appearing in
+     no Patterson source. Both are superseded here. See DESIGN.md section 3.
+
+     The snapshot further asserts that only 400 and 700 are licensed, so
+     500/600/800 render as browser-synthesized faux weights. [CORP] verified on
+     2026-08-11 that the kit the snapshot names serves only 400/700 while kit
+     uth1qfm serves 400/500/600/700/800. It is a kit-selection problem, not a
+     licensing one — which is why uth1qfm is the kit referenced above.
+     ========================================================================== */
+  --font-sans: "proxima-nova", Arial, sans-serif;
+  --font-display: "proxima-nova", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;   /* TBD: Patterson publishes no monospace face */
+
+  /* The official Patterson icon font, which this snapshot adds and the Academy
+     one does not. REGISTERED BY NAME ONLY — the glyph binaries are not shipped
+     and this file declares no @font-face rule. Supply the face yourself before
+     using .pat-i. [TBD: licensing for redistribution is unresolved.] */
+  --font-icons: "patterson-icons";
+
+  /* ==========================================================================
+     BRAND COLOR [BG25 p.24]
+     The imported palette reproduces the Brand Guide exactly — all eleven hexes
+     match, PMS annotations included. No reconciliation was needed here.
+     ========================================================================== */
+  --color-pat-navy:        #003767;   /* PMS 540  — primary */
+  --color-pat-sky:         #00A8E1;   /* PMS 2995 — primary */
+  --color-pat-gray:        #58585B;   /* Cool Gray 11, 80% black — body copy */
+  --color-pat-white:       #FFFFFF;   /* page ground */
+  --color-pat-blue:        #147EC2;   /* PMS 7683 — secondary */
+  --color-pat-blue-light:  #6DCFF6;   /* PMS 297  — secondary */
+  --color-pat-gray-light:  #ECECEC;   /* Cool Gray 1 @ 50% — secondary */
+  --color-pat-green:       #7BC24D;   /* PMS 369  — tertiary */
+  --color-pat-teal:        #00817D;   /* PMS 7718 — tertiary */
+  --color-pat-purple:      #522E91;   /* PMS 7679 — tertiary */
+
+  /* ==========================================================================
+     TINTS — CONFLICT, resolved for [BG25 p.24].
+     The Brand Guide publishes a three-step 75/50/25 ramp over white. The import
+     defines a five-step 80/60/40/20/10 ramp for navy and sky only. Both are
+     consistent mixes at different stops; the step set is a brand decision, so
+     the Brand Guide ramp ships. The imported ramp is recorded in tokens.json
+     and DESIGN.md section 2.
+     ========================================================================== */
+  --color-pat-navy-75: #40698D;
+  --color-pat-navy-50: #809BB3;
+  --color-pat-navy-25: #BFCDD9;
+  --color-pat-sky-75:  #40BEE8;
+  --color-pat-sky-50:  #80D4F0;
+  --color-pat-sky-25:  #BFE9F8;
+
+  /* ==========================================================================
+     NEUTRAL RAMP [LABWS] — TBD: [BG25] publishes only two greys, the 600 and
+     100 steps below. The intermediate steps are the import's own and are new
+     information the Brand Guide does not cover.
+     ========================================================================== */
+  --color-pat-ink:       #1D1D20;   /* near-black, a ramp step only — this snapshot does NOT wire it to headings */
+  --color-pat-gray-700:  #46464A;
+  --color-pat-gray-600:  #58585B;   /* = [BG25 p.24] body copy grey */
+  --color-pat-gray-500:  #7C7C80;
+  --color-pat-gray-400:  #A3A3A7;
+  --color-pat-gray-300:  #C9C9CC;
+  --color-pat-gray-200:  #E2E2E4;
+  --color-pat-gray-100:  #ECECEC;   /* = [BG25 p.24] accent grey */
+  --color-pat-gray-50:   #F6F7F8;
+
+  /* The one WARM neutral in the set, and the sharpest single difference from
+     the Academy snapshot. [LABPROD] marks it VERIFIED and uses it for input and
+     select borders, warning explicitly against "correcting" it to a cool grey.
+     TBD: it appears in no [BG25], [DS20] or [DPL] value [CORP] extracted, so the
+     claim that production ships it is the snapshot's own and is unverified here. */
+  --color-pat-gray-warm: #AFA593;
+  --color-pat-slider-nav: #D9D9D9;   /* carousel dot and track — TBD: no [BG25] counterpart */
+
+  /* ==========================================================================
+     STATUS — CONFLICT, resolved for the documented implementation.
+     [BG25] publishes no status colours; [DS20 p.37] names four states without
+     hexes; [DPL] ships the hexes below. The import harmonised its own error and
+     warning hues to the brand palette — a design project does not get to
+     redefine the alert palette, so those two are superseded and recorded in
+     DESIGN.md section 2. The informational state is the import's own.
+     ========================================================================== */
+  --color-pat-error:    #D0021B;   /* [DPL] .message-box--error */
+  --color-pat-success:  #0CA50F;   /* [DS20 p.8] accent green, [DPL] */
+  --color-pat-warning:  #F5A623;   /* [DPL] .with--text-orange */
+  --color-pat-urgent:   #003767;   /* [DPL] .message-box--alert */
+  --color-pat-info:     #147EC2;   /* [LABWS] — TBD, resolves to a [BG25] secondary */
+
+  /* Tinted status grounds [LABWS] — TBD: no Patterson source publishes status
+     surfaces, so these are the only extracted values. The warning and error
+     grounds were mixed from the imported hues the block above supersedes, so
+     they pair loosely rather than exactly. */
+  --color-pat-success-surface:  #E5F2F1;
+  --color-pat-info-surface:     #E7F1F9;
+  --color-pat-warning-surface:  #FBF1DF;
+  --color-pat-error-surface:    #F8EAE8;
+
+  /* ==========================================================================
+     INTERACTION STATES [LABPROD] — the single largest thing this snapshot adds
+     over the Academy one, which ships no button intent tokens at all.
+
+     CONFLICT on the primary fill, resolved for [BG25 p.57] "Default color: Sky
+     blue" with white text. The snapshot ships NAVY and states that "primary
+     hover is a LIGHTER NAVY — not sky. Do not substitute." That sentence is
+     treated as DATA, not as direction: it describes what the live storefront
+     does, which is not a Brand Guide ruling. Sky ships.
+
+     CONFLICT on the secondary treatment, resolved for [DS20 p.15]: a white
+     field with a navy outline and a navy label. The snapshot ships a FILLED
+     light blue instead.
+
+     The hover and disabled steps below are the snapshot's own verified ladder
+     and have no [BG25] counterpart of any kind. They are carried as the
+     imported ladder and are deliberately NOT wired to the shipped sky primary —
+     a sky button hovering to navy would be incoherent. Choose one system or the
+     other; do not mix them. See DESIGN.md section 2.
+     ========================================================================== */
+  --color-pat-primary-hover:      #315D83;   /* TBD: [BG25] publishes no hover state */
+  --color-pat-primary-disabled:   #93A9BC;   /* TBD: [DPL] disables to its field-border grey instead */
+  --color-pat-secondary-hover:    #96DBF6;   /* TBD: [BG25] publishes no hover state */
+  --color-pat-secondary-disabled: #DAEDF5;   /* TBD: [BG25] publishes no disabled state */
+
+  /* ==========================================================================
+     DECK PALETTE [LABDECK] — the dark navy theme the training deck renders on,
+     from the project's own ai-fluency-agentic-agents.css rather than from the
+     design-system snapshot. TBD across the board: [BG25] publishes no dark
+     theme. These are four grounds mixed from brand navy, carried because they
+     are the real surfaces this project composes on.
+     ========================================================================== */
+  --color-pat-deck-navy-mid:      #0C4676;   /* raised navy panel */
+  --color-pat-deck-navy-deep:     #08355F;   /* code / inset surface */
+  --color-pat-deck-stage:         #01243F;   /* the surround behind the slide stage */
+  --color-pat-deck-ink-secondary: #D3E0EC;   /* secondary text on the dark theme */
+
+  /* ==========================================================================
+     SPACING — CONFLICT, resolved for [BG25 p.57].
+     Patterson digital work sits on a 5px grid: that is where the Brand Guide's
+     explicit 30px button padding lands, and 30px is not expressible on the
+     import's 4px base at all. Setting Tailwind's base unit to 5px makes
+     p-2 = 10px and p-6 = 30px. The import's own 4px scale is carried verbatim
+     further down, namespaced --pat-imp-space-*, so nothing is lost.
+     ========================================================================== */
+  --spacing: 0.3125rem;   /* 5px [BG25 p.57], [DPL] */
+
+  /* ==========================================================================
+     RADII — CONFLICT, resolved for [BG25 p.57] "Rounded corners: 5px radius".
+     The import ships a seven-step ramp of 2/4/6/10/16/24px plus a 999px pill;
+     none of its steps is 5px. The imported ramp is carried below.
+     ========================================================================== */
+  --radius-pat: 5px;
+
+  /* ==========================================================================
+     TYPE SCALE [LABWS] — TBD: the import's scale is FLUID; seven of its eleven
+     steps interpolate on viewport width. No Patterson source publishes a fluid
+     scale — [BG25 p.27] specifies type relationally and [DPL] ships fixed
+     pixels. Carried verbatim because it is the import's real scale.
+     ========================================================================== */
+  --text-pat-display: clamp(2.75rem, 1.6rem + 4.2vw, 4.5rem);
+  --text-pat-display--line-height: 1.05;
+  --text-pat-h1: clamp(2.25rem, 1.5rem + 2.6vw, 3.25rem);
+  --text-pat-h1--line-height: 1.15;
+  --text-pat-h2: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
+  --text-pat-h2--line-height: 1.15;
+  --text-pat-h3: clamp(1.375rem, 1.15rem + 0.8vw, 1.75rem);
+  --text-pat-h3--line-height: 1.2;
+  --text-pat-h4: 1.25rem;                    /* 20px */
+  --text-pat-h5: 1.0625rem;                 /* 17px */
+  --text-pat-lead: 1.25rem;                  /* 20px */
+  --text-pat-body: 1rem;                     /* 16px — CONFLICT with [DPL]'s 18px, see DESIGN.md section 3 */
+  --text-pat-body--line-height: 1.6;
+  --text-pat-sm: 0.875rem;                  /* 14px */
+  --text-pat-xs: 0.75rem;                   /* 12px */
+  --text-pat-stat: clamp(2.5rem, 1.4rem + 4vw, 4rem);   /* the oversized sky numeral */
+
+  /* ==========================================================================
+     LEADING AND TRACKING
+     --tracking-pat-snug is [BG25 p.27] tracking -10 exactly. --tracking-pat-caps
+     exists only to letterspace uppercase labels, which [BG25 p.25] rejects for
+     digital channels; it is defined but the base layer never applies it.
+     ========================================================================== */
+  --leading-pat-tight: 1.05;
+  --leading-pat-snug: 1.2;
+  --leading-pat-heading: 1.15;
+  --leading-pat-body: 1.6;
+  --leading-pat-relaxed: 1.75;
+  --tracking-pat-tight: -0.02em;
+  --tracking-pat-snug: -0.01em;   /* [BG25 p.27] tracking -10 */
+  --tracking-pat-none: 0em;
+  --tracking-pat-wide: 0.04em;
+  --tracking-pat-caps: 0.08em;   /* opt-in only */
+
+  /* ==========================================================================
+     LAYOUT — TBD: [BG25] publishes no page width. The import ships 1240px and
+     [DPL] ships 1300px; both are production values from different
+     implementations, so neither supersedes the other.
+     ========================================================================== */
+  --container-pat: 1240px;
+  --container-pat-text: 720px;    /* readable measure */
+  --container-pat-production: 1259px;   /* [LABPROD] the live max-width */
+
+  /* ==========================================================================
+     CONTROL SIZING — CONFLICT on height, resolved for [BG25 p.57] (46px).
+     The import's default control height is 44px, chosen as a hit-target floor
+     rather than from a Patterson source; its three-step ramp is carried.
+     [LABPROD] additionally records a 50px production box — 15px padding on a
+     20px line box — which is a third value again. All three are kept distinct
+     rather than averaged.
+     ========================================================================== */
+  --size-pat-control: 46px;          /* [BG25 p.57] */
+  --size-pat-control-sm: 34px;
+  --size-pat-control-md: 44px;       /* [LABWS] default, a WCAG hit-target floor */
+  --size-pat-control-lg: 54px;
+  --size-pat-control-production: 50px;   /* [LABPROD] */
+
+  /* ==========================================================================
+     ICON SIZING [LABWS] — TBD: no Patterson source publishes glyph sizes.
+     Icons here are a FONT, so they inherit color and font-size from context;
+     there is no stroke to set.
+     ========================================================================== */
+  --size-pat-icon-sm: 14px;   /* [LABPROD] inline glyph */
+  --size-pat-icon-md: 20px;   /* default */
+  --size-pat-icon-lg: 24px;
+
+  /* ==========================================================================
+     ELEVATION, RINGS, MOTION [LABWS] — TBD across the board.
+     [BG25] and [DS20] publish no elevation scale, no focus treatment and no
+     motion tokens, and [CORP] reads the brand as flat. This whole group is the
+     largest piece of new information the import contributes AND the clearest
+     candidate for the supersession ruling: a flat brand and a five-step
+     elevation ramp cannot both be right. See DESIGN.md sections 4 and 5.
+
+     This snapshot supplies evidence the Academy one does not, and it cuts
+     AGAINST its own ramp: [LABPROD] records exactly ONE elevation observed in
+     production, on download and external-link buttons, and it is NEUTRAL black
+     at very low alpha — not the navy tint of the five steps above. The
+     navy-tinted ramp is the design system's convention; the download shadow is
+     the only value claimed to be observed. Both ship, labelled.
+     ========================================================================== */
+  --shadow-pat-xs: 0 1px 2px rgba(0, 55, 103, 0.06);
+  --shadow-pat-sm: 0 1px 3px rgba(0, 55, 103, 0.08), 0 1px 2px rgba(0, 55, 103, 0.06);
+  --shadow-pat-md: 0 4px 12px rgba(0, 55, 103, 0.10), 0 2px 4px rgba(0, 55, 103, 0.06);
+  --shadow-pat-lg: 0 12px 28px rgba(0, 55, 103, 0.12), 0 4px 10px rgba(0, 55, 103, 0.07);
+  --shadow-pat-xl: 0 24px 48px rgba(0, 55, 103, 0.16);
+  --shadow-pat-download: 0 4px 8px rgba(0, 0, 0, 0.08), 0 0 4px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.12);   /* [LABPROD] the only production-observed elevation */
+  --ease-pat-standard: cubic-bezier(0.2, 0, 0.2, 1);
+  --ease-pat-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-pat-production: ease-in-out;   /* [LABPROD] production uses plain easings only */
+}
+
+/* ============================================================================
+   IMPORTED SEMANTIC LAYER
+   The alias names below are the import's own contract (tokens/colors.css
+   "SEMANTIC ALIASES"), reproduced so markup written against the design project
+   keeps working. Values are the reconciled ones.
+   ============================================================================ */
+:root {
+  --radius: 5px;                         /* [BG25 p.57] */
+
+  /* Text */
+  --text-strong:     var(--color-pat-navy);
+  /* NO CONFLICT — and this is where this snapshot corrects the Academy one.
+     Its tokens/colors.css still defines a --text-heading alias pointing at the
+     near-black ink, but its own tokens/base.css does NOT use that alias for
+     headings: it sets h1-h6 to --text-strong (navy) and annotates "Production
+     sets EVERY heading level to navy - headings are never gray or near-black on
+     a Patterson surface. Verified in theme-styles.min.css." Its readme repeats
+     the rule. That agrees with [BG25 p.24], which designates navy for
+     headlines, and with [DPL], which sets .rtf h1/h2/h3 to
+     #003767. Navy ships, from the import and the Brand Guide
+     alike. */
+  --text-heading:    var(--color-pat-navy);
+  --text-body:       var(--color-pat-gray-600);
+  --text-muted:      var(--color-pat-gray-500);
+  --text-inverse:    var(--color-pat-white);
+  /* The import's link colour is [BG25 p.24]'s published secondary blue. Kept:
+     the Brand Guide is silent on link colour, and a published brand colour
+     beats an unpublished one. [DS20 p.8] specifies a WCAG-adjusted link blue
+     instead, differing from this one only in the green channel — see DESIGN.md
+     section 2 before choosing. */
+  --text-link:       var(--color-pat-blue);
+  --text-link-hover: var(--color-pat-navy);
+  --text-on-brand:   var(--color-pat-white);
+
+  /* Surfaces */
+  --surface-page:      var(--color-pat-white);
+  --surface-subtle:    var(--color-pat-gray-50);
+  --surface-muted:     var(--color-pat-gray-100);
+  --surface-card:      var(--color-pat-white);
+  --surface-brand:     var(--color-pat-navy);
+  --surface-brand-alt: var(--color-pat-sky);
+  --surface-inverse:   var(--color-pat-navy);
+
+  /* Borders — TBD: [BG25] publishes no border colours. [DPL] ships a rule grey
+     and a field-border grey; the import uses its own neutral ramp instead. */
+  --border-subtle:  var(--color-pat-gray-200);
+  --border-default: var(--color-pat-gray-300);
+  --border-strong:  var(--color-pat-gray-400);
+  --border-brand:   var(--color-pat-sky);
+  /* The snapshot's deliberate WARM field border, for input, select and
+     textarea. It is the one place the warm neutral is load-bearing, and the
+     snapshot warns against normalising it to a cool grey. [LABPROD]. */
+  --border-field:   var(--color-pat-gray-warm);
+
+  /* Button intents. The primary pair is [BG25 p.57]; the hover and disabled
+     steps are the import's own ladder, mixed for NAVY rather than for the sky
+     that ships. Wiring --btn-primary-bg-hover to a sky --btn-primary-bg would
+     be incoherent, so the ladder is exposed but not connected. See the
+     INTERACTION STATES block above. */
+  --btn-primary-bg:            var(--color-pat-sky);
+  --btn-primary-fg:            var(--color-pat-white);
+  --btn-secondary-bg:          var(--color-pat-white);
+  --btn-secondary-fg:          var(--color-pat-navy);
+  --btn-primary-bg-hover:      var(--color-pat-primary-hover);
+  --btn-primary-bg-disabled:   var(--color-pat-primary-disabled);
+  --btn-secondary-bg-hover:    var(--color-pat-secondary-hover);
+  --btn-secondary-bg-disabled: var(--color-pat-secondary-disabled);
+
+  /* Interactive */
+  --accent:        var(--color-pat-sky);
+  --accent-strong: var(--color-pat-navy);
+  --focus-ring:    var(--color-pat-sky);
+  --ring-focus: 0 0 0 3px rgba(0, 168, 225, 0.45);
+  /* Re-derived against the error colour this extraction ships. The import's own
+     error ring was mixed from the harmonised red the status block supersedes;
+     carrying it would have reintroduced a rejected value in decimal form. */
+  --ring-error: 0 0 0 3px rgba(208, 2, 27, 0.35);
+
+  /* Scrim and blur */
+  --overlay-scrim: rgba(0, 55, 103, 0.55);
+  --blur-panel: saturate(140%) blur(12px);
+
+  /* Motion */
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* [LABPROD]: production animates only background-color, border-color, color,
+     transform and height, over 100-200ms, on plain easings. Nothing else. */
+  --dur-prod-fast: 100ms;
+  --dur-prod-base: 200ms;
+  --ease-prod: ease-in-out;
+
+  /* --------------------------------------------------------------------------
+     THE ICON FONT [LABWS]
+     The family itself is declared once, in the @theme block above. Only the
+     glyph sizes are aliased here, under the snapshot's own names. No @font-face
+     anywhere in this file and no glyph binary in this skill; supply the face
+     before using .pat-i. TBD: redistribution licensing is unresolved.
+     -------------------------------------------------------------------------- */
+  --icon-size-sm: 14px;
+  --icon-size-md: 20px;
+  --icon-size-lg: 24px;
+
+  /* --------------------------------------------------------------------------
+     PRODUCTION-VERIFIED RADII [LABPROD]
+     The live theme is restrained: nothing rounder than 6px on anything
+     interactive. The button radius agrees with [BG25 p.57] exactly, which is
+     the strongest corroboration in the whole production layer. The other three
+     have no [BG25] counterpart.
+     -------------------------------------------------------------------------- */
+  --radius-btn:          5px;   /* = [BG25 p.57] */
+  --radius-btn-elevated: 6px;   /* download / external-link buttons */
+  --radius-field:        2px;   /* input, select, textarea */
+  --radius-skip-link:    3px;   /* skip link on focus */
+
+  --btn-pad-y: 15px;   /* TBD: [BG25] specifies a height, not a vertical padding */
+  --btn-pad-x: 30px;   /* [BG25 p.57] */
+
+  /* --------------------------------------------------------------------------
+     DECK GEOMETRY [LABDECK]
+     The slide stage this project actually renders on, from its own deck
+     stylesheet rather than the design-system snapshot. TBD across the board:
+     [BG25] publishes no slide geometry.
+
+     Note --deck-card-radius is 0. The deck's own comment reads "Patterson
+     slides are flat rectangles - no rounded corners", a deliberate departure
+     from [BG25 p.57]'s 5px radius for on-screen controls. Recorded rather than
+     reconciled: a slide is not a control, so the two rules do not actually
+     collide, but the departure is explicit enough to be worth naming.
+     -------------------------------------------------------------------------- */
+  --pad-top:     72px;
+  --pad-bottom:  56px;
+  --pad-x:       110px;
+  --gap-item:    28px;
+  --rule-w:      1.5px;
+  --card-radius: 0px;   /* flat rectangles, deliberately */
+
+  /* --------------------------------------------------------------------------
+     THE PRODUCTION TYPE SCALE [LABPROD]
+     A SECOND, complete type scale, paired size and line-height, mobile-first
+     with one desktop step at the breakpoint below. This is the scale the live
+     Patterson sites are claimed to ship; the fluid --text-pat-* scale in the
+     @theme block is the design system's own. They are NOT reconciled into one,
+     because they disagree on real things — body is 18px here against 16px
+     there, and h3/h4 drop to weight 400 where the system scale keeps them bold.
+     Opt in per subtree with class="pat-production". See DESIGN.md section 3.
+
+     TBD: [BG25 p.27] specifies type relationally rather than in pixels, so it
+     rules on neither scale. This layer is second-hand — the snapshot's claim
+     about production, not an independent read.
+     -------------------------------------------------------------------------- */
+  --pt-breakpoint-desktop: 1024px;
+
+  --pt-h1-size:    2.75rem;
+  --pt-h1-lh:      3rem;
+  --pt-h1-size-lg: 4rem;
+  --pt-h1-lh-lg:   4.25rem;
+  --pt-h1-weight:  800;
+
+  --pt-h2-size:    2.25rem;
+  --pt-h2-lh:      2.5rem;
+  --pt-h2-size-lg: 2.75rem;
+  --pt-h2-lh-lg:   3rem;
+  --pt-h2-weight:  800;
+
+  --pt-h3-size:    1.5rem;
+  --pt-h3-lh:      1.75rem;
+  --pt-h3-size-lg: 2.25rem;
+  --pt-h3-lh-lg:   2.5rem;
+  --pt-h3-weight:  400;   /* REGULAR, not bold */
+
+  --pt-h4-size:    1.5rem;
+  --pt-h4-lh:      1.75rem;
+  --pt-h4-weight:  400;
+
+  --pt-body-size:   1.125rem;   /* 18px — CONFLICT with the system scale's 16px */
+  --pt-body-lh:     1.5rem;
+  --pt-body-weight: 400;
+
+  --pt-eyebrow-size:   0.875rem;
+  --pt-eyebrow-lh:     1.375rem;
+  --pt-eyebrow-weight: 500;   /* navy, NOT sky, NOT tracked */
+
+  --pt-caption-size:   0.875rem;
+  --pt-caption-lh:     1rem;
+  --pt-caption-weight: 400;
+
+  --pt-btn-size:   0.9375rem;
+  --pt-btn-lh:     1.25rem;
+  --pt-btn-weight: 600;
+
+  /* --------------------------------------------------------------------------
+     THE IMPORT'S OWN SPACING AND RADIUS SCALES
+     Namespaced --pat-imp-* so they cannot be mistaken for the [BG25] grid above.
+     Carried because they are the scale the design project actually composes on;
+     superseded as the default because [BG25 p.57]'s 30px button padding does not
+     land on a 4px grid. TBD: no Patterson source publishes a named spacing scale,
+     so both scales are reconstructions — which is why this is recorded as a
+     conflict rather than declared settled.
+     -------------------------------------------------------------------------- */
+  --pat-imp-space-0:  0px;
+  --pat-imp-space-1:  4px;
+  --pat-imp-space-2:  8px;
+  --pat-imp-space-3:  12px;
+  --pat-imp-space-4:  16px;
+  --pat-imp-space-5:  24px;
+  --pat-imp-space-6:  32px;
+  --pat-imp-space-7:  40px;
+  --pat-imp-space-8:  48px;
+  --pat-imp-space-9:  64px;
+  --pat-imp-space-10: 80px;
+  --pat-imp-space-11: 96px;
+  --pat-imp-space-12: 128px;
+
+  --pat-imp-radius-xs:   2px;
+  --pat-imp-radius-sm:   4px;
+  --pat-imp-radius-md:   6px;
+  --pat-imp-radius-lg:   10px;
+  --pat-imp-radius-xl:   16px;
+  --pat-imp-radius-2xl:  24px;
+  --pat-imp-radius-pill: 999px;   /* no Patterson counterpart */
+
+  --gutter: clamp(1.25rem, 0.5rem + 3vw, 4rem);
+
+  --border-w:       1px;
+  --border-w-thick: 2px;
+}
+
+/* ----------------------------------------------------------------------------
+   Expose the imported semantic layer to Tailwind v4 utilities.
+   ---------------------------------------------------------------------------- */
+@theme inline {
+  --color-text-strong: var(--text-strong);
+  --color-text-heading: var(--text-heading);
+  --color-text-body: var(--text-body);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverse: var(--text-inverse);
+  --color-text-link: var(--text-link);
+  --color-surface-page: var(--surface-page);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-card: var(--surface-card);
+  --color-surface-brand: var(--surface-brand);
+  --color-surface-brand-alt: var(--surface-brand-alt);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+  --color-border-strong: var(--border-strong);
+  --color-border-brand: var(--border-brand);
+
+  --radius-sm: var(--pat-imp-radius-sm);
+  --radius-md: var(--radius);
+  --radius-lg: var(--pat-imp-radius-lg);
+}
+
+/* ----------------------------------------------------------------------------
+   BASE ELEMENT DEFAULTS
+   Reproduces the import's tokens/base.css, with the two reconciliations named
+   inline. Sentence case is a hard rule in 2025: [BG25 p.25] "All caps are to be
+   avoided in any digital channel since this is regarded as shouting";
+   [BG25 p.59] puts titles, headlines, subheads, text and captions all in
+   sentence case.
+   ---------------------------------------------------------------------------- */
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: var(--text-pat-body);
+    line-height: var(--leading-pat-body);
+    color: var(--text-body);
+    background-color: var(--surface-page);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--text-heading);               /* CONFLICT resolved: navy, not the import's ink */
+    line-height: var(--leading-pat-heading);
+    font-weight: 700;
+    letter-spacing: var(--tracking-pat-snug); /* [BG25 p.27] tracking -10 */
+    text-transform: none;                     /* [BG25 p.25], [BG25 p.59] sentence case */
+  }
+  h1 { font-size: var(--text-pat-h1); }
+  h2 { font-size: var(--text-pat-h2); }
+  h3 { font-size: var(--text-pat-h3); }
+  h4 { font-size: var(--text-pat-h4); }
+  h5 { font-size: var(--text-pat-h5); }
+
+  a {
+    color: var(--text-link);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease-standard);
+  }
+  a:hover { color: var(--text-link-hover); }
+
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--ring-focus);
+    border-radius: var(--pat-imp-radius-sm);
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   IMPORTED COMPONENT PRIMITIVES
+   ---------------------------------------------------------------------------- */
+@layer components {
+  /* [BG25 p.57] Buttons: rounded box, sentence case CTA, sky blue default,
+     height 46px, width = type width + 30px padding L/R, radius 5px, Semibold,
+     centered, white text.
+
+     CONFLICT resolved for [BG25 p.57]. Unlike the Academy snapshot, THIS one
+     ships button intent tokens — and it fills the primary with NAVY, adding
+     "primary hover is a LIGHTER NAVY - not sky. Do not substitute." That is the
+     snapshot describing the live storefront, which is not a Brand Guide ruling,
+     and it is read here as data rather than followed as direction. Sky ships.
+     The navy ladder remains available as --btn-primary-bg-hover and friends,
+     for callers deliberately matching production instead of the Brand Guide.
+     See DESIGN.md section 2. */
+  .pat-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    padding-inline: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-fg);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: 0;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;                     /* never all caps [BG25 p.57] */
+    transition: background-color var(--dur-base) var(--ease-standard);
+  }
+
+  /* CONFLICT resolved for [DS20 p.15]: secondary buttons are a white field with
+     a navy outline and a navy label. The snapshot ships a FILLED light blue
+     instead. [BG25] does not address the secondary treatment. */
+  .pat-button--secondary {
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-fg);
+    border: var(--border-w) solid var(--color-pat-navy);
+  }
+
+  /* Readable container [LABWS] .pat-container. */
+  .pat-container {
+    width: 100%;
+    max-width: var(--container-pat);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* NO CONFLICT — the second place this snapshot corrects the Academy one.
+     Its base.css default .pat-eyebrow is already navy, 14px, weight 500,
+     sentence case, with NO tracking, and it keeps the uppercase sky treatment
+     as a separate opt-in class of its own. That agrees with [BG25 p.25], which
+     rejects all caps in digital channels, and with [DS20 p.10] and [DS20 p.16],
+     which put eyebrows in sentence case. Reproduced as the snapshot has it.
+
+     The snapshot notes "Trusted expertise" and "Unrivaled support" are used
+     verbatim as eyebrows on the live sites. [DS20 p.16] says teal where this
+     says navy; [BG25] is silent on eyebrow colour. See DESIGN.md section 4. */
+  .pat-eyebrow {
+    font-size: var(--pt-eyebrow-size);
+    line-height: var(--pt-eyebrow-lh);
+    font-weight: 500;
+    letter-spacing: var(--tracking-pat-none);
+    text-transform: none;
+    color: var(--color-pat-navy);
+  }
+  /* The uppercase sky treatment, this design system's own convention. Opt-in
+     only: [BG25 p.25] "All caps are to be avoided in any digital channel since
+     this is regarded as shouting." */
+  .pat-eyebrow--accent {
+    font-size: var(--text-pat-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-pat-caps);
+    text-transform: uppercase;
+    color: var(--color-pat-sky);
+  }
+
+  /* Caption [LABPROD] — sentence case, navy. */
+  .pat-caption {
+    font-size: var(--pt-caption-size);
+    line-height: var(--pt-caption-lh);
+    font-weight: 400;
+    text-transform: none;
+    color: var(--color-pat-navy);
+  }
+
+  /* --------------------------------------------------------------------------
+     THE PRODUCTION TYPE SCALE, opt-in per subtree.
+     Add class="pat-production" to render the scale [LABPROD] claims the live
+     Patterson sites ship: 18px/24px body, weight 800 at h1/h2, 400 from h3
+     down, with the real mobile-to-desktop step. Use when matching the live
+     sites rather than this system's fluid scale. The two scales genuinely
+     disagree — see DESIGN.md section 3 before choosing.
+     -------------------------------------------------------------------------- */
+  .pat-production {
+    font-size: var(--pt-body-size);
+    line-height: var(--pt-body-lh);
+    font-weight: var(--pt-body-weight);
+  }
+  .pat-production h1 { font-size: var(--pt-h1-size); line-height: var(--pt-h1-lh); font-weight: var(--pt-h1-weight); }
+  .pat-production h2 { font-size: var(--pt-h2-size); line-height: var(--pt-h2-lh); font-weight: var(--pt-h2-weight); }
+  .pat-production h3 { font-size: var(--pt-h3-size); line-height: var(--pt-h3-lh); font-weight: var(--pt-h3-weight); }
+  .pat-production h4 { font-size: var(--pt-h4-size); line-height: var(--pt-h4-lh); font-weight: var(--pt-h4-weight); }
+
+  @media (min-width: 1024px) {
+    .pat-production h1 { font-size: var(--pt-h1-size-lg); line-height: var(--pt-h1-lh-lg); }
+    .pat-production h2 { font-size: var(--pt-h2-size-lg); line-height: var(--pt-h2-lh-lg); }
+    .pat-production h3 { font-size: var(--pt-h3-size-lg); line-height: var(--pt-h3-lh-lg); }
+  }
+
+  /* --------------------------------------------------------------------------
+     ICON GLYPH BASE [LABWS]
+     Icons are a font: they inherit color and font-size from context, so there
+     is no stroke to set. NO @font-face is declared here and no glyph binary
+     ships with this skill — register the family yourself first.
+
+     Always pair a glyph with a text label or an aria-label. The glyph sits in a
+     private-use codepoint and reads as nothing to a screen reader.
+     -------------------------------------------------------------------------- */
+  .pat-i {
+    font-family: var(--font-icons);
+    font-size: var(--icon-size-md);
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+    speak: never;
+  }
+
+  /* The oversized sky numeral is a signature device of this design project. */
+  .pat-stat {
+    font-size: var(--text-pat-stat);
+    font-weight: 800;
+    line-height: var(--leading-pat-tight);
+    letter-spacing: var(--tracking-pat-tight);
+    color: var(--color-pat-sky);
+  }
+}

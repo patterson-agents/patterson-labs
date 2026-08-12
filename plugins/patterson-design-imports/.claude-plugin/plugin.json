@@ -1,0 +1,20 @@
+{
+  "name": "patterson-design-imports",
+  "version": "0.1.0",
+  "description": "Design tokens imported from the Patterson Academy and lab-workshop claude.ai/design projects, each as a Tailwind v4 theme plus a W3C tokens.json with a byte-identical generator and a recorded reconciliation against the 2025 Brand Guide. Incubating: does not supersede patterson-brand.",
+  "author": {
+    "name": "Patterson Corporate Marketing & Communications"
+  },
+  "homepage": "https://github.com/patterson-agents/patterson-labs/tree/main/plugins/patterson-design-imports",
+  "repository": "https://github.com/patterson-agents/patterson-labs",
+  "license": "UNLICENSED",
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "tailwind",
+    "brand",
+    "import",
+    "incubating",
+    "patterson"
+  ]
+}
